@@ -1,0 +1,36 @@
+---
+import { categories, type CategoryKey } from "../data/resources";
+
+export interface Props {
+  activeCategory: CategoryKey | "all";
+}
+
+const { activeCategory } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center gap-2">
+  <a
+    href="?category=all"
+    class={`rounded-full px-4 py-1.5 text-sm font-medium transition-all backdrop-blur-sm ${
+      activeCategory === "all"
+        ? "bg-zinc-900/85 text-white shadow-sm"
+        : "bg-white/40 border border-white/30 text-zinc-600 hover:bg-white/60"
+    }`}
+  >
+    全部
+  </a>
+  {
+    categories.map((cat) => (
+      <a
+        href={`?category=${cat.key}`}
+        class={`rounded-full px-4 py-1.5 text-sm font-medium transition-all backdrop-blur-sm ${
+          activeCategory === cat.key
+            ? "bg-zinc-900/85 text-white shadow-sm"
+            : "bg-white/40 border border-white/30 text-zinc-600 hover:bg-white/60"
+        }`}
+      >
+        {cat.label}
+      </a>
+    ))
+  }
+</div>

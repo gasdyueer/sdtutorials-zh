@@ -1,0 +1,166 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResourceCard from "../components/ResourceCard.astro";
+import SearchBar from "../components/SearchBar.astro";
+import CategoryFilter from "../components/CategoryFilter.astro";
+import { resources, categories } from "../data/resources";
+---
+
+<BaseLayout
+  title="AI绘画教程资源导航 - Stable Diffusion / ComfyUI / FLUX 中文资源索引"
+  description="为中文 AI 创作者整理的 AI 绘画教程资源导航，涵盖 Stable Diffusion、ComfyUI、FLUX 等工具的网站、UP主和文章推荐。"
+>
+  <!-- Hero / Intro -->
+  <section class="mx-auto max-w-6xl px-4 pt-16 pb-8">
+    <h1 class="text-3xl font-bold tracking-tight text-zinc-900">
+      AI绘画教程资源导航
+    </h1>
+    <p class="mt-3 max-w-2xl text-base text-zinc-500 leading-relaxed">
+      为中文 AI 创作者整理的资源索引，涵盖 Stable Diffusion、ComfyUI、FLUX 等工具。
+      收录网站教程、B站UP主及优质文章，持续更新。
+    </p>
+  </section>
+
+  <!-- Filters -->
+  <section class="mx-auto max-w-6xl px-4 pb-6">
+    <div id="filter-bar" class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="w-full sm:w-80">
+        <SearchBar />
+      </div>
+      <CategoryFilter activeCategory="all" />
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="mx-auto max-w-6xl px-4 pb-20">
+    <p id="result-count" class="mb-4 text-sm text-zinc-400">
+      共 {resources.length} 个资源
+    </p>
+
+    <div id="resource-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {resources.map((r) => (
+        <ResourceCard
+          title={r.title}
+          url={r.url}
+          description={r.description}
+          category={r.category}
+          tags={r.tags}
+        />
+      ))}
+    </div>
+
+    <div id="empty-state" class="hidden py-20 text-center">
+      <p class="text-zinc-400">没有找到匹配的资源</p>
+      <p class="mt-1 text-sm text-zinc-300">试试调整搜索词或筛选条件</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ resources, categories }}>
+  var searchInput = document.getElementById("search-input");
+  var resultCount = document.getElementById("result-count");
+  var grid = document.getElementById("resource-grid");
+  var emptyState = document.getElementById("empty-state");
+
+  var categoryLabel = {
+    website: "网站",
+    creator: "UP主",
+    article: "文章",
+  };
+
+  function getCurrentCategory() {
+    var url = new URL(window.location.href);
+    var cat = url.searchParams.get("category");
+    if (cat && categories.some(function (c) { return c.key === cat; })) return cat;
+    return "all";
+  }
+
+  function getSearchTerm() {
+    return (searchInput && searchInput.value || "").toLowerCase().trim();
+  }
+
+  function renderCard(r) {
+    var tagsHtml = r.tags.map(function (t) {
+      return '<span class="rounded-md bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500">' + t + "</span>";
+    }).join("");
+
+    return (
+      '<a href="' + r.url + '" target="_blank" rel="noopener noreferrer" class="card group block">' +
+      '<div class="flex items-start justify-between gap-3">' +
+      '<h3 class="text-base font-medium text-zinc-900 transition-colors group-hover:text-teal-600">' + r.title + "</h3>" +
+      '<span class="badge badge-' + r.category + '">' + categoryLabel[r.category] + "</span>" +
+      "</div>" +
+      '<p class="mt-2 text-sm leading-relaxed text-zinc-500 line-clamp-3">' + r.description + "</p>" +
+      '<div class="mt-3 flex flex-wrap gap-1.5">' + tagsHtml + "</div>" +
+      "</a>"
+    );
+  }
+
+  function filterResources() {
+    var category = getCurrentCategory();
+    var term = getSearchTerm();
+
+    var filtered = resources.filter(function (r) {
+      if (category !== "all" && r.category !== category) return false;
+      if (!term) return true;
+      return (
+        r.title.toLowerCase().indexOf(term) !== -1 ||
+        r.description.toLowerCase().indexOf(term) !== -1 ||
+        r.tags.some(function (t) { return t.toLowerCase().indexOf(term) !== -1; })
+      );
+    });
+
+    resultCount.textContent = "共 " + filtered.length + " 个资源";
+
+    if (filtered.length === 0) {
+      grid.innerHTML = "";
+      grid.classList.add("hidden");
+      emptyState.classList.remove("hidden");
+      return;
+    }
+
+    emptyState.classList.add("hidden");
+    grid.classList.remove("hidden");
+    grid.innerHTML = filtered.map(renderCard).join("");
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", filterResources);
+  }
+
+  var filterBar = document.getElementById("filter-bar");
+  if (filterBar) {
+    filterBar.addEventListener("click", function (e) {
+      var link = e.target.closest("a");
+      if (!link) return;
+
+      var href = link.getAttribute("href");
+      if (!href) return;
+
+      e.preventDefault();
+
+      var url = new URL(href, window.location.origin);
+      var newCat = url.searchParams.get("category") || "all";
+
+      filterBar.querySelectorAll("a").forEach(function (el) {
+        var elHref = el.getAttribute("href");
+        var elUrl = new URL(elHref, window.location.origin);
+        var elCat = elUrl.searchParams.get("category") || "all";
+        if (elCat === newCat) {
+          el.classList.add("bg-zinc-900\\/85", "text-white", "shadow-sm");
+          el.classList.remove(
+            "bg-white\\/40", "border", "border-white\\/30", "text-zinc-600", "hover:bg-white\\/60"
+          );
+        } else {
+          el.classList.remove("bg-zinc-900\\/85", "text-white", "shadow-sm");
+          el.classList.add(
+            "bg-white\\/40", "border", "border-white\\/30", "text-zinc-600", "hover:bg-white\\/60"
+          );
+        }
+      });
+
+      window.history.pushState({}, "", href);
+      filterResources();
+    });
+  }
+</script>

@@ -1,0 +1,17 @@
+# deps
+node_modules/
+
+# build
+dist/
+
+# env
+.env
+.env.*
+
+# editor
+.astro/
+*.tsbuildinfo
+
+# os
+.DS_Store
+Thumbs.db
