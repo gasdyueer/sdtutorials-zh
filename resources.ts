@@ -19,7 +19,7 @@ export const resources: Resource[] = [
     title: "Civitai",
     url: "https://civitai.com/",
     description:
-      "本网站后缀包括 .com 与 .red，其中 .red 为完整站点，.com 存在内容阉割。全球最大的 AI 图像生成模型社区，总模型容量超 500TB。提供 Checkpoint、LoRA、ComfyUI 工作流、教程等，海量免费模型可下载。",
+      "本网站后缀包括 .com 与 .red，其中 .com 更健全，.red 内容更多。全球最大的 AI 图像生成模型社区，总模型容量超 500TB。提供 Checkpoint、LoRA、ComfyUI 工作流、教程等，海量免费模型可下载。",
     category: "website",
     tags: ["模型下载", "社区", "LoRA", "Checkpoint"],
   },
@@ -93,6 +93,48 @@ export const resources: Resource[] = [
       "收录 3000+ 带配图标签的在线提示词构建工具，支持拖拽排序、权重调整、导入导出，开源。",
     category: "website",
     tags: ["标签", "提示词", "Danbooru", "工具"],
+  },
+
+  {
+    title: "NovelAI 图片元数据解析",
+    url: "https://spell.novelai.dev/",
+    description:
+      "上传 AI 生成图片自动解析内嵌元数据（提示词、种子、模型参数等），方便复现和参考他人的生成设置。",
+    category: "website",
+    tags: ["元数据", "提示词", "解析", "工具"],
+  },
+  {
+    title: "Danbooru",
+    url: "https://danbooru.donmai.us/",
+    description:
+      "全球最全的动漫风格标签数据库，绝大多数标签配有详细 Wiki 说明，帮助精准理解和使用 tag。需一定网络条件和英文基础。",
+    category: "website",
+    tags: ["标签", "Danbooru", "Wiki", "英文"],
+  },
+  {
+    title: "AI Tag",
+    url: "https://aitag.win/",
+    description:
+      "抓取 Pixiv 上带元数据的 AI 生成图片，方便参考提示词和参数配置。R18 内容占比较高，浏览时注意。",
+    category: "website",
+    tags: ["提示词", "元数据", "Pixiv", "参考"],
+  },
+
+  {
+    title: "AnimaDex",
+    url: "https://animadex.net/",
+    description:
+      "自托管动漫角色与艺术家参考图库，专为 Anima AI 生成内容设计。围绕角色、艺术家、版权三维数据集构建，支持分面筛选、文本搜索、CivitAI LoRA 链接，提供 CSV 导入、缩略图生成、ComfyUI 图像生成等完整流水线，适合本地化管理 AI 动漫素材。",
+    category: "website",
+    tags: ["Anima", "图库", "艺术家", "自托管"],
+  },
+  {
+    title: "Anima Style Explorer",
+    url: "https://anima.mooshieblob.com/",
+    description:
+      "收录超 4.2 万名 Anima 1.0 艺术家风格的画廊式浏览工具，支持按名称、热度、帖子数排序，右键复制风格标签，分页/无限滚动切换，永久免费。适合寻找和筛选 AI 绘画特定艺术风格。",
+    category: "website",
+    tags: ["Anima", "艺术家风格", "画廊", "标签"],
   },
   // --- B站 UP主 ---
   {

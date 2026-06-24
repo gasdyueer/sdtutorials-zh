@@ -8,8 +8,11 @@ dist/
 .env
 .env.*
 
+# vitepress
+.vitepress/cache/
+.vitepress/dist/
+
 # editor
-.astro/
 *.tsbuildinfo
 
 # os
