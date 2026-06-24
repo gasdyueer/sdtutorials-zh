@@ -19,7 +19,7 @@ export const resources: Resource[] = [
     title: "Civitai",
     url: "https://civitai.com/",
     description:
-      "全球最大的 AI 图像生成模型社区，总模型容量超 500TB。提供 Checkpoint、LoRA、ComfyUI 工作流、教程等，海量免费模型可下载。",
+      "本网站后缀包括 .com 与 .red，其中 .red 为完整站点，.com 存在内容阉割。全球最大的 AI 图像生成模型社区，总模型容量超 500TB。提供 Checkpoint、LoRA、ComfyUI 工作流、教程等，海量免费模型可下载。",
     category: "website",
     tags: ["模型下载", "社区", "LoRA", "Checkpoint"],
   },
