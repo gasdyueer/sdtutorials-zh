@@ -1,5 +1,7 @@
 # AI绘画教程资源导航
 
+![sdtutorials-zh](bg2.png)
+
 为中文 AI 创作者整理的 AI 绘画教程资源索引，涵盖 **Stable Diffusion**、**ComfyUI**、**FLUX** 等主流工具。
 
 
