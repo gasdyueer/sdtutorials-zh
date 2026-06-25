@@ -10,6 +10,7 @@ dist/
 
 # vitepress
 .vitepress/cache/
+docs/.vitepress/
 .vitepress/dist/
 
 # editor
