@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ResourceGrid from "./ResourceGrid.vue";
-import "./custom.css";
 
 function toggleTheme() {
   const html = document.documentElement;
@@ -28,15 +27,7 @@ function toggleTheme() {
           Stable Diffusion / ComfyUI / FLUX 中文资源索引
         </p>
       </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-link"
-        >
-          GitHub
-        </a>
+      <div style="display: flex; align-items: center;">
         <button
           class="theme-toggle"
           aria-label="切换主题"
@@ -72,7 +63,7 @@ function toggleTheme() {
       <p>AI绘画教程资源导航 - 为中文 AI 创作者整理的资源索引</p>
       <p style="margin-top: 0.25rem;">
         资源来源于社区公开信息，如有问题请
-        <a href="https://github.com" style="text-decoration: underline; text-underline-offset: 2px;">提交 Issue</a>
+        <a href="https://github.com/gasdyueer/sdtutorials-zh/issues" style="text-decoration: underline; text-underline-offset: 2px;">提交 Issue</a>
       </p>
     </div>
   </footer>
