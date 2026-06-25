@@ -2,6 +2,8 @@
 
 为中文 AI 创作者整理的 AI 绘画教程资源索引，涵盖 **Stable Diffusion**、**ComfyUI**、**FLUX** 等主流工具。
 
+
+🌐 **在线访问**：[https://gasdyueer.github.io/sdtutorials-zh/](https://gasdyueer.github.io/sdtutorials-zh/)
 收录网站教程、B站 UP主推荐及优质文章，持续更新。
 
 ## 功能
@@ -11,7 +13,7 @@
 - 分类筛选，SPA 无刷新切换
 - 浅色 / 暗色双主题，跟随系统偏好 + 手动切换
 - 毛玻璃卡片 + 渐变背景 + bg.png 装饰图层
-- 完全静态输出，零 JS bundle（仅 ~3KB 交互脚本）
+- VitePress 默认主题 + 本地全文搜索
 
 ## 本地开发
 
@@ -20,7 +22,7 @@ npm install
 npm run dev
 ```
 
-浏览器打开 `http://localhost:4321/sdtutorials-zh`。
+浏览器打开 `http://localhost:5173/sdtutorials-zh`。
 
 ## 添加资源
 
@@ -39,9 +41,8 @@ npm run dev
 ## 部署到 GitHub Pages
 
 1. Fork 本仓库
-2. 修改 `astro.config.mjs` 中的 `site` 和 `base` 为你的仓库地址：
-   ```js
-   site: "https://<你的用户名>.github.io",
+2. 修改 `.vitepress/config.ts` 中的 `base` 为你的仓库路径：
+   ```ts
    base: "/<仓库名>",
    ```
 3. GitHub 仓库 `Settings > Pages` → Source 选择 `GitHub Actions`
@@ -53,10 +54,8 @@ npm run dev
 
 ## 技术栈
 
-| 技术 | 用途 |
-|---|---|
-| [Astro 5](https://astro.build) | 静态站点生成，零 JS 默认输出 |
-| [Tailwind CSS v4](https://tailwindcss.com) | 原子化样式 |
+| [VitePress](https://vitepress.dev) | 静态站点生成，Vue 驱动的文档引擎 |
+| [Vue 3](https://vuejs.org) | UI 框架，Composition API |
 | GitHub Pages + Actions | 免费托管 + 自动部署 |
 
 ## License

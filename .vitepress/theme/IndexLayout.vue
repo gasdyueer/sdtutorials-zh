@@ -56,7 +56,7 @@ function toggleTheme() {
 
   <main style="flex: 1; position: relative; z-index: 10;">
     <!-- Hero -->
-    <section style="margin: 0 auto; max-width: 72rem; padding: 4rem 1rem 2rem;">
+    <section class="hero-section" style="margin: 0 auto; max-width: 72rem; padding: 5rem 1rem 3rem;">
       <h1 class="hero-title">AI绘画教程资源导航</h1>
       <p class="hero-sub">
         为中文 AI 创作者整理的资源索引，涵盖 Stable Diffusion、ComfyUI、FLUX 等工具。
